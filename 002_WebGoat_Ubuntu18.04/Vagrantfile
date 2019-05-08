@@ -1,0 +1,29 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "bento/ubuntu-18.04"
+  config.vm.network "private_network", ip: "192.168.33.1" #host only adapter
+  config.vm.network "forwarded_port", guest: 8080, host: 8080   # HTTP
+  config.vm.network "forwarded_port", guest: 9090, host: 9090  # HTTPS
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "2046"
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+    sudo add-apt-repository ppa:openjdk-r/ppa
+    sudo apt-get update
+    sudo apt-get install -y openjdk-11-jre
+    sudo apt-get install -y tree git vim wget
+    sudo wget https://github.com/WebGoat/WebGoat/releases/download/v8.0.0.M24/webgoat-server-8.0.0.M24.jar
+    sudo wget https://github.com/WebGoat/WebGoat/releases/download/v8.0.0.M24/webwolf-8.0.0.M24.jar
+    SHELL
+
+  config.vm.provision "shell", run: "always", privileged: false, inline: <<-SHELL
+    java -jar webgoat-server-8.0.0.M24.jar --server.address=0.0.0.0 &
+    sleep 2m
+    java -jar webwolf-8.0.0.M24.jar --server.address=0.0.0.0 &
+    SHELL
+
+end

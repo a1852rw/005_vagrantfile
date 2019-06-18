@@ -16,14 +16,32 @@ Vagrant.configure("2") do |config|
     sudo apt-get update
     sudo apt-get install -y openjdk-11-jre
     sudo apt-get install -y tree git vim wget
+		sudo echo " " >> /etc/vim/vimrc
+		sudo echo "set number" >> /etc/vim/vimrc
+		sudo echo "set title" >> /etc/vim/vimrc
+		sudo echo "syntax on" >> /etc/vim/vimrc
+		sudo echo "set smartindent" >> /etc/vim/vimrc
+		sudo echo " " >> /etc/vim/vimrc
+		sudo echo "highlight Comment ctermfg=Green" >> /etc/vim/vimrc
+		sudo echo "highlight Constant ctermfg=Red" >> /etc/vim/vimrc
+		sudo echo "highlight Identifier ctermfg=Cyan" >> /etc/vim/vimrc
+		sudo echo "highlight Statement ctermfg=Yellow" >> /etc/vim/vimrc
+		sudo echo "highlight Title ctermfg=Magenta" >> /etc/vim/vimrc
+		sudo echo "highlight Special ctermfg=Magenta" >> /etc/vim/vimrc
+		sudo echo "highlight PreProc ctermfg=Magenta" >> /etc/vim/vimrc
+		sudo echo " " >> /etc/vim/vimrc
+		sudo echo "set tabstop=2" >> /etc/vim/vimrc
+		sudo echo "set shiftwidth=2" >> /etc/vim/vimrc
     sudo wget https://github.com/WebGoat/WebGoat/releases/download/v8.0.0.M25/webgoat-server-8.0.0.M25.jar
     sudo wget https://github.com/WebGoat/WebGoat/releases/download/v8.0.0.M25/webwolf-8.0.0.M25.jar
     SHELL
 
   config.vm.provision "shell", run: "always", privileged: false, inline: <<-SHELL
     java -jar webgoat-server-8.0.0.M25.jar --server.address=0.0.0.0 &
-    sleep 2m
+    sleep 20s
     java -jar webwolf-8.0.0.M25.jar --server.address=0.0.0.0 &
+		sleep 2m
+		echo "WenGoat/WebWolf起動しました"
     SHELL
 
 end

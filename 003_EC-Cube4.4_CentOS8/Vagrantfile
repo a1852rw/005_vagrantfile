@@ -1,0 +1,10 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "aiit-alpha-team/Centos-8.2_EC-Cube-4.4"
+  config.vm.network "forwarded_port", guest: 80, host: 8080   # HTTP
+  config.vm.network "forwarded_port", guest: 443, host: 20443  # HTTPS
+  config.vm.provider "virtualbox" do |vb|
+  end
+end

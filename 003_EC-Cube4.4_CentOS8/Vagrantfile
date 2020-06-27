@@ -1,0 +1,20 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "aiit-alpha-team/CentOS-8.2_EC-Cube-4.4"
+  config.vm.network "forwarded_port", guest: 80, host: 2080   # HTTP
+  config.vm.network "forwarded_port", guest: 443, host: 20443  # HTTPS
+  config.vm.provider "virtualbox" do |vb|
+  end
+end
+
+=begin
+構築後はホスト環境のブラウザから以下でアクセス可能になる。
+
+- 管理画面：http://127.0.0.1:2080/adminconsole/
+  - 管理者ID：admin
+  - 管理者パスワード：adminpasswd
+- ユーザ画面：http://127.0.0.1:2080/
+
+=end 

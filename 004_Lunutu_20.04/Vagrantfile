@@ -46,7 +46,7 @@ sudo timedatectl set-timezone Asia/Tokyo
 sudo systemctl enable systemd-timesyncd.service
 
 # その他必要なソフトの追加
-sudo apt-get install -y forefox vim wget curl tree git gedit
+sudo apt-get install -y firefox vim wget curl tree git gedit
 
 # vim設定カスタマイズ
 sudo echo " " >> /etc/vimrc

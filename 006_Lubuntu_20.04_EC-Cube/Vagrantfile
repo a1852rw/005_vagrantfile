@@ -3,7 +3,7 @@
 
 # VirtualBoxとUbuntuの設定
 Vagrant.configure(2) do |config|
-  config.vm.box = "aiit-alpha-team/boxes/Lubuntu-20.04_EC-Cube-4.1.0"
+  config.vm.box = "aiit-alpha-team/Lubuntu-20.04_EC-Cube-4.1.0"
   config.vm.provider "virtualbox" do |vb|
   	vb.gui = true
   	vb.memory = "4096"

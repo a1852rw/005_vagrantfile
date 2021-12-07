@@ -17,4 +17,5 @@ Vagrant.configure(2) do |config|
   end
 end
 
-# 管理者アカウント id:admin pass:adminpasswd
+# OSログインアカウント id:vagrant pass:vagrant
+# EC-Cube管理者アカウント id:admin pass:adminpasswd

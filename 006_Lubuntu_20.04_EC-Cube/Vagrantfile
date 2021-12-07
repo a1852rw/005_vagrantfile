@@ -16,3 +16,5 @@ Vagrant.configure(2) do |config|
     ]
   end
 end
+
+# 管理者アカウント id:admin pass:adminpasswd

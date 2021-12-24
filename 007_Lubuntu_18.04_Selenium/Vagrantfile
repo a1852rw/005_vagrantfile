@@ -1,0 +1,22 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# VirtualBoxとUbuntuの設定
+Vagrant.configure(2) do |config|
+  config.vm.box = "aiit-alpha-team/Lubuntu-18.04_Selenium"
+  config.vm.provider "virtualbox" do |vb|
+  	vb.gui = true
+  	vb.memory = "4096"
+    vb.cpus = 2
+    vb.customize [
+      "modifyvm", :id,
+      "--vram", "128", #ビデオメモリ確保
+      "--clipboard", "bidirectional", #クリップボードの共有
+      "--draganddrop", "bidirectional", #ドラッグアンドドロップ可能
+    ]
+  end
+end
+
+# OSログインアカウント id:vagrant pass:vagrant
+# EC-Cube管理者アカウント id:admin pass:adminpasswd
+# EC-Cubeユーザーアカウント id:test@test.jp pass:test_test
